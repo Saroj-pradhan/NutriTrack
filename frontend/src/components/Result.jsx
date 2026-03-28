@@ -1,5 +1,5 @@
-
-
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 function Result() {
     const stored = localStorage.getItem("NutritionData");
     const NutritionData = stored ? JSON.parse(stored) : null;
@@ -9,8 +9,14 @@ function Result() {
     if(!NutritionData.length){
         return <div>Data Not Found</div>
     }
+    useEffect(()=>{
+        if(NutritionData.length > 0){
+              toast.success("The data is calculated per 100 g");
+        }
+    })
   return (
       <div>
+    
        { NutritionData.map((dt)=>(
         <div>
             <h1>Food Name: {dt.name}</h1>

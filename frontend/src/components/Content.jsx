@@ -8,6 +8,7 @@ function Content() {
   const navigate = useNavigate();
     const [Imgs,setImgs] = useState(null);
     const [base64Img, setBase64Img] = useState("");
+    const [loading,setloading] = useState(false);
     let file = null;
   function handleChange(e){
     console.log(e.target);
@@ -26,17 +27,13 @@ setImgs(URL.createObjectURL(e.target.files[0]))
   }
   async function handelSubmittion(){
     try {
-     
-      console.log(import.meta.env.VITE_BACKEND_API,"hiiiiiiiiiii");
-      
-      console.log(base64Img);
-
+console.log("submit...");
+setloading(true);
        const data = await axios.post(`${import.meta.env.VITE_BACKEND_API}api/`,{
         "image_b64":base64Img
     })
     console.log(data);
-    console.log("before navigate");
-    // if(data.data?.description?.status?)
+    setloading(false);
     let Info =  data?.data?.description;
   if(Info.status == 422 || Info.status == 400){
     toast.error(`${Info.message}`);
@@ -53,6 +50,7 @@ setImgs(URL.createObjectURL(e.target.files[0]))
      toast.error("server error");
     } 
   }
+  if(loading) return (<Loader/>);
   return (
     <div className="flex flex-col justify-center items-center">
           <p className="text-3xl black font-bold mb-4">Meet NutriTrack</p>
