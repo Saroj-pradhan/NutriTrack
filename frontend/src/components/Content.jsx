@@ -50,7 +50,7 @@ setloading(true);
      toast.error("server error");
     } 
   }
-  if(loading) return (<Loader/>);
+  if(loading) return (<Loader img={`${Imgs}`}/>);
   return (
     <div className="flex flex-col justify-center items-center">
           <p className="text-3xl black font-bold mb-4">Meet NutriTrack</p>
