@@ -1,11 +1,8 @@
 import { WiStars } from "react-icons/wi";
 const Loader = ({img}) => {
   return (
-    <div className="bg-black h-screen">
-       <div className="absolute top-1/2 left-2/4 blur-[220px] w-[400px] h-[300px] 
-   
-    bg-green-500  rounded-full">
-  </div>
+    <div className=" w-[100%] min-h-screen bg-black overflow-hidden ">
+       <div className="absolute top-1/2 left-2/4 blur-[140px] sm:blur-[220px] w-[45vw] h-[38vh] bg-green-500  rounded-full"></div>
       <div className=" max-w-[320px] pt-10 text-white container mx-auto flex flex-col  items-center">
        <div className="w-[90%]   h-[270px] relative">
        
@@ -23,8 +20,7 @@ const Loader = ({img}) => {
        <img
           className="w-[100%] h-[100%] rounded-2xl blur-xs"
           src={img}
-          alt=""
-          srcset=""
+          alt="food images"
         />
         {/* <div className="h-1 absolute w-full bg-green-500"></div> */}
          <div
