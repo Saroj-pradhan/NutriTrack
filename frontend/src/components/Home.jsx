@@ -9,7 +9,7 @@ function Home() {
            <p className="text-xl mb-4">
             Meet NutriTrack, the AI-powered app for easy calorie tracking. Snap a photo, scan a barcode, or describe your meal and get instant calorie and nutrient info
            </p>
-<NavLink to="/content" className="inline-flex items-center justify-center text-white bg-black px-2 py-3 rounded-lg w-[250px] h-11 font-semibold">Get Started</NavLink>
+<NavLink to="/home" className="inline-flex items-center justify-center text-white bg-black px-2 py-3 rounded-lg w-[250px] h-11 font-semibold">Get Started</NavLink>
       </div>
       <div className="h-screen sm:w-[50%] w-[100%]">
         <img className="sm:h-[90%] sm:w-full" src="https://res.cloudinary.com/dddmddgzs/image/upload/v1772681688/hero-image_yy60gz.webp" alt="" srcset="" />

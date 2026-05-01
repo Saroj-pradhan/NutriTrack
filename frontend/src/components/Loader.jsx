@@ -1,7 +1,7 @@
 import { WiStars } from "react-icons/wi";
 const Loader = ({img}) => {
   return (
-    <div className=" w-[100%] min-h-screen bg-black overflow-hidden ">
+    <div className="fixed inset-0 z-[9999] w-[100%] min-h-screen bg-black overflow-hidden ">
        <div className="absolute top-1/2 left-2/4 blur-[140px] sm:blur-[220px] w-[45vw] h-[38vh] bg-green-500  rounded-full"></div>
       <div className=" max-w-[320px] pt-10 text-white container mx-auto flex flex-col  items-center">
        <div className="w-[90%]   h-[270px] relative">
