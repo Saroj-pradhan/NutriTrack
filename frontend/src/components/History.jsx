@@ -10,7 +10,7 @@ const History = () => {
         <div className="flex gap-5 items-center">
           <img
             className="w-16 h-16 rounded-xl"
-            src="/public/foods.png"
+            src="/foods.png"
             alt="img"
           />
           <div>

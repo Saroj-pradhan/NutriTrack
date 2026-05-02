@@ -84,7 +84,7 @@ function UploadPage() {
               <div className="absolute left-0 top-5 bg-gray-500 h-full w-[100%] blur-[120px] hover:blur-[130px] ">
               
              </div>
-             {Imgs ? <img src={Imgs} className="h-full w-[100%] rounded-2xl transition-transform ease-in-out duration-300 group-hover:scale-110" />: <img className=" h-full w-[100%] rounded-2xl transition-transform ease-in-out duration-300 group-hover:scale-110" src="/public/foods.png" alt="food text" />} 
+             {Imgs ? <img src={Imgs} className="h-full w-[100%] rounded-2xl transition-transform ease-in-out duration-300 group-hover:scale-110" />: <img className=" h-full w-[100%] rounded-2xl transition-transform ease-in-out duration-300 group-hover:scale-110" src="/foods.png" alt="food text" />} 
           
         <input
           type="file"
