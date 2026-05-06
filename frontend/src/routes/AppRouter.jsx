@@ -6,16 +6,20 @@ import Loader from "../components/Loader";
 import UploadPage from "../pages/UploadPage";
 import History from "../components/History";
 import Profile from "../components/Profile";
+import SignupPage from "../pages/SignupPage";
+import LoginPage from "../pages/LoginPage";
 export const AppRouter = function(){
     return(
             <Routes>
               <Route path="/" element={<Home></Home>}></Route>
-              <Route path="/home" element={<Content/>}></Route>
+              <Route path="/log" element={<Content/>}></Route>
               <Route path="/result" element={<Result/>}></Route>
             <Route path="/loader" element={<Loader/>}></Route>
              <Route path="/history" element={<History/>}></Route>
-            <Route path="/upload" element={<UploadPage/>}></Route>
+            <Route path="/home" element={<UploadPage/>}></Route>
              <Route path="/profile" element={<Profile/>}></Route>
+              <Route path="/signup" element={<SignupPage/>}></Route>
+              <Route path="/login" element={<LoginPage/>}></Route>
             </Routes>
     )
 }

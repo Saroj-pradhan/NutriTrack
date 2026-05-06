@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 function AppNavBar() {
     const navigate = useNavigate();
-    function NavigateToupload(){
-    navigate("/home")
+    function NavigateToLog(){
+    navigate("/log")
     }
     function NavigateToHome(){
-    navigate("/upload")
+    navigate("/home")
     }
     function NavigateToAnalyse(){
         navigate("/history")
@@ -22,7 +22,7 @@ function AppNavBar() {
         <GoHome size={25}/>
         <p>Home</p>
       </div>
-      <div className="flex flex-col items-center" onClick={NavigateToupload} >    
+      <div className="flex flex-col items-center" onClick={NavigateToLog} >    
       < MdOutlinePlaylistAddCheck   size={25} />
       <p>Log</p>
       </div>
