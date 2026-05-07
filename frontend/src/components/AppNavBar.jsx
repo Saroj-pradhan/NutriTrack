@@ -44,24 +44,9 @@ import { MdOutlinePlaylistAddCheck, MdPlaylistAddCheck, MdHistory } from "react-
 import { RiHistoryFill } from "react-icons/ri";
 
 const TABS = [
-  {
-    label: "Home",
-    path: "/home",
-    Icon: GoHome,
-    ActiveIcon: GoHomeFill,
-  },
-  {
-    label: "Log",
-    path: "/log",
-    Icon: MdOutlinePlaylistAddCheck,
-    ActiveIcon: MdPlaylistAddCheck,
-  },
-  {
-    label: "History",
-    path: "/history",
-    Icon: MdHistory,
-    ActiveIcon: RiHistoryFill,
-  },
+  { label: "Home",    path: "/home",    Icon: GoHome,                   ActiveIcon: GoHomeFill         },
+  { label: "Log",     path: "/log",     Icon: MdOutlinePlaylistAddCheck, ActiveIcon: MdPlaylistAddCheck },
+  { label: "History", path: "/history", Icon: MdHistory,                 ActiveIcon: RiHistoryFill      },
 ];
 
 export default function AppNavBar() {
@@ -69,68 +54,54 @@ export default function AppNavBar() {
   const { pathname } = useLocation();
 
   return (
-    <>
-      {/* Spacer so page content isn't hidden behind navbar */}
-      <div className="h-20 sm:hidden" />
+    // Full-width flush bottom — no spacer div causing whitespace
+    <nav
+      className="fixed bottom-0 left-0 w-full z-50 sm:hidden flex items-center justify-evenly"
+      style={{
+        background: "rgba(13,13,13,0.95)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        boxShadow: "0 -4px 24px rgba(0,0,0,0.5)",
+        height: 60,
+      }}
+    >
+      {TABS.map(({ label, path, Icon, ActiveIcon }) => {
+        const active = pathname === path || pathname.startsWith(path + "/");
+        const Ic = active ? ActiveIcon : Icon;
 
-      <nav className="fixed bottom-0 left-0 right-0 z-50 sm:hidden">
-        {/* Blur + border backdrop */}
-        <div
-          className="relative mx-3 mb-3 rounded-2xl overflow-hidden"
-          style={{
-            background: "rgba(13,13,13,0.92)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(255,255,255,0.06)",
-            boxShadow: "0 -4px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,230,118,0.04)",
-          }}
-        >
-          <div className="flex items-center justify-around px-2 py-2">
-            {TABS.map(({ label, path, Icon, ActiveIcon }) => {
-              const active = pathname === path || pathname.startsWith(path + "/");
-              const Ic = active ? ActiveIcon : Icon;
+        return (
+          <button
+            key={path}
+            onClick={() => navigate(path)}
+            className="relative flex flex-col items-center justify-center gap-0.5 flex-1 h-full outline-none active:scale-95 transition-transform duration-150"
+          >
+            {/* Active indicator — thin green bar at top of tab */}
+            {active && (
+              <span
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-green-400"
+                style={{ boxShadow: "0 0 8px #00e676" }}
+              />
+            )}
 
-              return (
-                <button
-                  key={path}
-                  onClick={() => navigate(path)}
-                  className="relative flex flex-col items-center justify-center gap-0.5 flex-1 py-2 px-1 rounded-xl transition-all duration-200 active:scale-95 outline-none"
-                  style={{
-                    background: active ? "rgba(0,230,118,0.08)" : "transparent",
-                    border: active ? "1px solid rgba(0,230,118,0.15)" : "1px solid transparent",
-                  }}
-                >
-                  {/* Active glow dot */}
-                  {active && (
-                    <span
-                      className="absolute top-1.5 right-4 w-1 h-1 rounded-full bg-green-400"
-                      style={{ boxShadow: "0 0 6px #00e676" }}
-                    />
-                  )}
+            <Ic
+              size={23}
+              style={{
+                color: active ? "#00e676" : "#4b4b4b",
+                filter: active ? "drop-shadow(0 0 5px rgba(0,230,118,0.55))" : "none",
+                transition: "color 0.2s, filter 0.2s",
+              }}
+            />
 
-                  {/* Icon */}
-                  <Ic
-                    size={22}
-                    style={{
-                      color: active ? "#00e676" : "#4b4b4b",
-                      filter: active ? "drop-shadow(0 0 6px rgba(0,230,118,0.6))" : "none",
-                      transition: "color 0.2s, filter 0.2s",
-                    }}
-                  />
-
-                  {/* Label */}
-                  <span
-                    className="text-[10px] font-semibold tracking-wide transition-colors duration-200"
-                    style={{ color: active ? "#00e676" : "#4b4b4b" }}
-                  >
-                    {label}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
-    </>
+            <span
+              className="text-[10px] font-semibold tracking-wide"
+              style={{ color: active ? "#00e676" : "#4b4b4b", transition: "color 0.2s" }}
+            >
+              {label}
+            </span>
+          </button>
+        );
+      })}
+    </nav>
   );
 }

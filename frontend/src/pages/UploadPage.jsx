@@ -406,7 +406,7 @@ async function saveToLog() {
     fat:      calcNutrient(item.fat,      quantities[i]),
     imageUrl: imgPreview || null,
   }));
-console.log("hii1",finalItems)
+
   try {
     setSaving(true); // add: const [saving, setSaving] = useState(false);
 
@@ -522,7 +522,7 @@ console.log("hii1",finalItems)
                     <IoCloseCircle size={26} />
                   </button>
                   {/* Analyze button over image */}
-                  <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                  <div className="absolute bottom-4 left-0 right-0 flex justify-center mb-6">
                     <button
                       onClick={analyzeImage}
                       disabled={loading}

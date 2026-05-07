@@ -49,46 +49,79 @@ export default function LoginPage() {
   const [success, setSuccess]   = useState(false);
 
   const handleSubmit = async (e) => {
-    e?.preventDefault();
-    setError("");
-
-    if (!email || !password) {
-      setError("Email and password are required.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-        console.log("hayyyyyy")
-      const res = await axios.post(`${import.meta.env.VITE_BACKEND_API}user/login`,{ email, password });
- console.log("hay");
- console.log(res);
-      const data =  res.data;
-      console.log(data,"data")
-      if (data.success) {
-        // Store token — swap localStorage for your auth strategy if needed
-        localStorage.setItem("token", data.token);
-        if (remember) localStorage.setItem("rememberedEmail", email);
-        setSuccess(true);
-        // e.g. navigate("/dashboard");
-      } else {
-        setError(data.message || "Invalid credentials.");
-      }
-    } catch (error) {
-  console.dir(error, "error");
-
-  if (error.response) {
-    // backend responded with error
-    setError(error.response.data.message || "Something went wrong");
-  } else {
-    // network error
-    setError("Network error. Please try again.");
+  e?.preventDefault();
+  setError("");
+ 
+  if (!email || !password) {
+    setError("Email and password are required.");
+    return;
   }
-}
-    finally {
-      setLoading(false);
+ 
+  setLoading(true);
+  try {
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_API}user/login`, { email, password });
+    const data = res.data;
+ 
+    if (data.success) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user)); // ← save full user object
+      if (remember) localStorage.setItem("rememberedEmail", email);
+      setSuccess(true);
+    } else {
+      setError(data.message || "Invalid credentials.");
     }
-  };
+  } catch (error) {
+    if (error.response) {
+      setError(error.response.data.message || "Something went wrong");
+    } else {
+      setError("Network error. Please try again.");
+    }
+  } finally {
+    setLoading(false);
+  }
+};
+ 
+//   const handleSubmit = async (e) => {
+//     e?.preventDefault();
+//     setError("");
+
+//     if (!email || !password) {
+//       setError("Email and password are required.");
+//       return;
+//     }
+
+//     setLoading(true);
+//     try {
+//         console.log("hayyyyyy")
+//       const res = await axios.post(`${import.meta.env.VITE_BACKEND_API}user/login`,{ email, password });
+//  console.log("hay");
+//  console.log(res);
+//       const data =  res.data;
+//       console.log(data,"data")
+//       if (data.success) {
+//         // Store token — swap localStorage for your auth strategy if needed
+//         localStorage.setItem("token", data.token);
+//         if (remember) localStorage.setItem("rememberedEmail", email);
+//         setSuccess(true);
+//         // e.g. navigate("/dashboard");
+//       } else {
+//         setError(data.message || "Invalid credentials.");
+//       }
+//     } catch (error) {
+//   console.dir(error, "error");
+
+//   if (error.response) {
+//     // backend responded with error
+//     setError(error.response.data.message || "Something went wrong");
+//   } else {
+//     // network error
+//     setError("Network error. Please try again.");
+//   }
+// }
+//     finally {
+//       setLoading(false);
+//     }
+//   };
 
   // ── Success state ──────────────────────────────────────────────────────────
   if (success) {
